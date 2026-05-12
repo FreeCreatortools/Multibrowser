@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Free Creator Tools | YouTube Multi Viewer Tool</title>
+
+  <meta name="description" content="Use Free Creator Tools YouTube Multi Viewer Tool to preview YouTube videos, Shorts, and live streams in multiple responsive players. Free, no login, mobile-friendly creator workflow tool." />
+  <meta name="keywords" content="youtube multi viewer, youtube multi browser, youtube shorts preview tool, multi video player, youtube creator tools, free creator tools" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Free Creator Tools" />
+
+  <meta property="og:title" content="Free Creator Tools YouTube Multi Viewer Tool" />
+  <meta property="og:description" content="Free YouTube Multi Viewer Tool for creators. Preview videos, Shorts, and live streams in multiple responsive players." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root {
+      --bg: #080b18;
+      --card: rgba(255,255,255,0.08);
+      --card2: rgba(255,255,255,0.12);
+      --text: #ffffff;
+      --muted: #b8c1d9;
+      --brand: #ff004f;
+      --brand2: #00e5ff;
+      --green: #00d084;
+      --yellow: #ffc107;
+      --border: rgba(255,255,255,0.16);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,0,79,0.35), transparent 32%),
+        radial-gradient(circle at top right, rgba(0,229,255,0.25), transparent 28%),
+        linear-gradient(135deg, #060817, #101631 45%, #070914);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 11, 24, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      font-size: 20px;
+    }
+
+    .logo span {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 10px 30px rgba(255,0,79,0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .nav-links a:hover {
+      color: white;
+      border-color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.09);
+    }
+
+    .hero {
+      max-width: 1180px;
+      margin: auto;
+      padding: 54px 18px 28px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(0,229,255,0.35);
+      background: rgba(0,229,255,0.08);
+      color: #dffbff;
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -1.5px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #fff, #00e5ff, #ff4d88);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      margin: 18px 0 0;
+    }
+
+    .tool-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.06));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .tool-card h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      color: #eef3ff;
+      font-size: 14px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--border);
+      outline: none;
+      border-radius: 16px;
+      padding: 14px 14px;
+      background: rgba(0,0,0,0.25);
+      color: white;
+      font-size: 15px;
+    }
+
+    input::placeholder {
+      color: rgba(255,255,255,0.45);
+    }
+
+    select option {
+      color: #111;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 0.55fr;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 15px 16px;
+      color: white;
+      font-weight: 900;
+      font-size: 15px;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, var(--brand), #ff7a00);
+      box-shadow: 0 14px 35px rgba(255,0,79,0.25);
+    }
+
+    .btn-clear {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid var(--border);
+    }
+
+    .message {
+      margin-top: 12px;
+      color: #ffd6d6;
+      font-size: 14px;
+      min-height: 20px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 26px 18px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin: 0;
+      max-width: 620px;
+      line-height: 1.6;
+    }
+
+    .players {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .player-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.22);
+    }
+
+    .player-head {
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .player-head b {
+      color: white;
+    }
+
+    .iframe-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #000;
+    }
+
+    .iframe-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .info {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .info h3 {
+      color: white;
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .tool-link {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 18px;
+      transition: transform 0.15s ease, border 0.15s ease, background 0.15s ease;
+    }
+
+    .tool-link:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0,229,255,0.45);
+      background: rgba(255,255,255,0.11);
+    }
+
+    .tool-link b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .tool-link span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .warning {
+      border: 1px solid rgba(255,193,7,0.35);
+      background: rgba(255,193,7,0.08);
+      color: #fff4ce;
+      border-radius: 18px;
+      padding: 14px 16px;
+      line-height: 1.6;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    .highlight-box {
+      border: 1px solid rgba(0,229,255,0.35);
+      background: rgba(0,229,255,0.07);
+      border-radius: 22px;
+      padding: 20px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .highlight-box h3 {
+      margin: 0 0 8px;
+      color: white;
+      font-size: 22px;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 24px 18px 34px;
+      margin-top: 28px;
+      background: rgba(0,0,0,0.18);
+      line-height: 1.7;
+    }
+
+    .footer a {
+      color: #dffbff;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 34px;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .row,
+      .buttons,
+      .stats,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-title p {
+        margin-top: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a href="index.html" class="logo">
+        <span>▶</span>
+        Free Creator Tools
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#tool">Multi Viewer</a>
+        <a href="#guide">Guide</a>
+        <a href="#why-use">Why Use</a>
+        <a href="#premium-tools">Tools</a>
+        <a href="#monetization-tips">Tips</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="badge">⚡ Free • Responsive • No Login</div>
+
+        <h1>YouTube <span class="gradient">Multi Viewer</span> Tool</h1>
+
+        <p>
+          Paste any YouTube video, Shorts, or live URL and generate multiple responsive embedded
+          players on one page. This tool is useful for creators who want to preview videos,
+          test layouts, compare content, and manage their creator workflow.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong id="statPlayers">0</strong>
+            <span>Active Players</span>
+          </div>
+
+          <div class="stat">
+            <strong>20</strong>
+            <span>Recommended Max</span>
+          </div>
+
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Browser Based</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-card" id="tool">
+        <h2>🚀 Generate Players</h2>
+
+        <div class="form-grid">
+          <div>
+            <label for="youtubeUrl">YouTube Video / Shorts / Live URL</label>
+            <input id="youtubeUrl" type="url" placeholder="Paste YouTube URL here..." />
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="count">Number of Players</label>
+              <input id="count" type="number" min="1" max="20" value="4" />
+            </div>
+
+            <div>
+              <label for="quality">Layout Size</label>
+              <select id="quality">
+                <option value="auto">Auto Responsive</option>
+                <option value="large">Large Cards</option>
+                <option value="compact">Compact Cards</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="mute">Audio</label>
+              <select id="mute">
+                <option value="1">Mute Audio</option>
+                <option value="0">Sound On</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="autoplay">Autoplay</label>
+              <select id="autoplay">
+                <option value="0">Autoplay OFF</option>
+                <option value="1">Autoplay ON</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="buttons">
+            <button class="btn-main" onclick="generatePlayers()">Generate Players</button>
+            <button class="btn-clear" onclick="clearPlayers()">Clear</button>
+          </div>
+
+          <div class="message" id="message"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="generated">
+      <div class="section-title">
+        <h2>Generated Players</h2>
+        <p>
+          Players will appear below. For best performance, keep the count low on mobile devices.
+        </p>
+      </div>
+
+      <div id="players" class="players"></div>
+    </section>
+
+    <section class="section" id="guide">
+      <div class="section-title">
+        <h2>How to Use YouTube Multi Viewer Tool?</h2>
+        <p>
+          Use this free multi-browser style viewer to preview YouTube videos, Shorts, and live streams
+          in multiple embedded players for testing, layout checking, and creator workflow.
+        </p>
+      </div>
+
+      <div class="warning">
+        <b>Important Note:</b> YouTube views, watch time, and engagement are measured by YouTube’s
+        own systems and may take 24 to 48 hours to update in YouTube Studio. This tool does not
+        guarantee views, watch time, monetization, ranking, or algorithmic promotion.
+      </div>
+
+      <div class="info-grid" style="margin-top:16px;">
+        <div class="info">
+          <h3>Step 1: Copy Video URL</h3>
+          Copy the URL of your YouTube video, Shorts, or live stream from YouTube.
+        </div>
+
+        <div class="info">
+          <h3>Step 2: Paste URL</h3>
+          Paste the copied YouTube link into the input box above.
+        </div>
+
+        <div class="info">
+          <h3>Step 3: Select Players</h3>
+          Choose the number of video windows you want to open, such as 5, 10, or 20.
+        </div>
+
+        <div class="info">
+          <h3>Step 4: Choose Audio</h3>
+          Select your audio preference. Muted playback can be smoother on some mobile devices.
+        </div>
+
+        <div class="info">
+          <h3>Step 5: Generate Players</h3>
+          Click the “Generate Players” button to load the video in multiple responsive players.
+        </div>
+
+        <div class="info">
+          <h3>Step 6: Manage Workflow</h3>
+          Use this tool for previewing, testing embeds, checking video display, or managing creator workflow.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why-use">
+      <div class="section-title">
+        <h2>Why Use Free Creator Tools?</h2>
+        <p>
+          In 2026, digital creators need fast, simple, and mobile-friendly tools to manage content,
+          preview videos, test layouts, and improve their publishing workflow.
+        </p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info">
+          <h3>100% Free Tool</h3>
+          Use the YouTube Multi Viewer without login, subscription, or complicated setup.
+        </div>
+
+        <div class="info">
+          <h3>Works on All Devices</h3>
+          The tool is responsive and works on mobile, desktop, laptop, and tablet screens.
+        </div>
+
+        <div class="info">
+          <h3>Creator-Friendly Layout</h3>
+          Preview videos in multiple embedded players and test how your content looks in different layouts.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="premium-tools">
+      <div class="section-title">
+        <h2>Explore More Free Premium Tools</h2>
+        <p>
+          Add your own tool pages and internal links here to improve navigation, SEO, and user engagement.
+        </p>
+      </div>
+
+      <div class="tools">
+        <a class="tool-link" href="#">
+          <b>Tool #1: Multi Live Viewer</b>
+          <span>Preview YouTube live streams in a clean multi-window layout.</span>
+        </a>
+
+        <a class="tool-link" href="#">
+          <b>Tool #2: Shorts Preview Tool</b>
+          <span>Dedicated player layout for YouTube Shorts preview and testing.</span>
+        </a>
+
+        <a class="tool-link" href="#">
+          <b>Tool #3: YouTube Thumbnail Downloader</b>
+          <span>Download and preview YouTube video thumbnails for content planning.</span>
+        </a>
+
+        <a class="tool-link" href="#">
+          <b>Tool #4: YouTube Title Generator</b>
+          <span>Create SEO-friendly titles for videos, Shorts, and tutorials.</span>
+        </a>
+
+        <a class="tool-link" href="#">
+          <b>Tool #5: YouTube Description Generator</b>
+          <span>Generate clean video descriptions with hashtags and keywords.</span>
+        </a>
+
+        <a class="tool-link" href="#">
+          <b>Tool #10: Instagram Reel Preview</b>
+          <span>Preview and organize Instagram Reel content for your creator workflow.</span>
+        </a>
+
+        <a class="tool-link" href="#">
+          <b>Tool #17: Website Traffic Checker</b>
+          <span>Plan blog, AdSense, and website growth with helpful creator tools.</span>
+        </a>
+
+        <a class="tool-link" href="#">
+          <b>View All 20+ Growth Tools ➔</b>
+          <span>Explore more free tools for YouTube, Instagram, blogs, and creators.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="monetization-tips">
+      <div class="section-title">
+        <h2>💰 Monetization & Finance Content Tips</h2>
+        <p>
+          If you create educational content around finance, insurance, legal awareness, cloud hosting,
+          or crypto education, strong content structure and SEO-friendly descriptions can help you reach
+          the right audience.
+        </p>
+      </div>
+
+      <div class="highlight-box">
+        <h3>High-Value Content Niches</h3>
+        Educational content about personal loans, insurance, legal awareness, enterprise tech,
+        cloud hosting, and crypto education can attract valuable audiences when it is accurate,
+        transparent, and helpful. Always avoid misleading claims and include proper disclaimers
+        where required.
+      </div>
+
+      <div class="info-grid" style="margin-top:16px;">
+        <div class="info">
+          <h3>💰 Finance & Lending Content</h3>
+          Create clear educational videos around topics like personal loans, credit score improvement,
+          APR explanation, loan comparison, and responsible borrowing.
+        </div>
+
+        <div class="info">
+          <h3>🚗 Insurance Marketing</h3>
+          If you make videos about car insurance quotes, explain policy benefits, claim process,
+          premium savings, and local insurance awareness in simple language.
+        </div>
+
+        <div class="info">
+          <h3>⚖️ Legal & Medical Awareness</h3>
+          Educational creators can publish informative content about patient rights, legal awareness,
+          documentation, and consultation guidance without making misleading claims.
+        </div>
+
+        <div class="info">
+          <h3>🖥️ Enterprise Tech & Cloud</h3>
+          For cloud hosting and enterprise tech content, focus on uptime, security, scalability,
+          backups, performance, and business use cases.
+        </div>
+
+        <div class="info">
+          <h3>₿ Crypto & DeFi Education</h3>
+          Create risk-aware crypto education content about staking, wallets, security, volatility,
+          and responsible research before investing.
+        </div>
+
+        <div class="info">
+          <h3>🎥 YouTube & Multi-Browser Tools</h3>
+          Use multi-browser style tools for video preview, embed testing, content planning,
+          and repurposing long-form videos into short-form content.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="seo-niches">
+      <div class="section-title">
+        <h2>Optimized for High-Value Content Niches</h2>
+        <p>
+          Build helpful educational content for high-value niches by using clear titles, strong hooks,
+          useful descriptions, and audience-focused explanations.
+        </p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info">
+          <h3>Best Personal Loans USA</h3>
+          Explain eligibility, interest rates, repayment terms, credit score impact, and comparison tips.
+        </div>
+
+        <div class="info">
+          <h3>Car Insurance Quotes</h3>
+          Cover local insurance tips, premium factors, coverage types, and claim guidance.
+        </div>
+
+        <div class="info">
+          <h3>Managed Cloud Hosting</h3>
+          Create B2B-style content around server uptime, security, speed, and support.
+        </div>
+
+        <div class="info">
+          <h3>Crypto Staking Platforms 2026</h3>
+          Share educational content with risk warnings, platform research tips, and security basics.
+        </div>
+
+        <div class="info">
+          <h3>Legal Awareness Content</h3>
+          Publish informative videos with disclaimers and encourage viewers to consult professionals.
+        </div>
+
+        <div class="info">
+          <h3>YouTube Creator Tools</h3>
+          Use SEO-friendly descriptions, thumbnails, captions, and video planning tools to improve content quality.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>
+          Common questions about the YouTube Multi Viewer tool.
+        </p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info">
+          <h3>Is this tool free?</h3>
+          Yes, this tool is free to use and does not require login.
+        </div>
+
+        <div class="info">
+          <h3>Does it work on mobile?</h3>
+          Yes, the layout is responsive and works on mobile, desktop, laptop, and tablets.
+        </div>
+
+        <div class="info">
+          <h3>Can I use Shorts links?</h3>
+          Yes, this tool supports YouTube Shorts links, normal video links, live links, and embed links.
+        </div>
+
+        <div class="info">
+          <h3>Does this guarantee views?</h3>
+          No. YouTube controls how views, watch time, and engagement are counted. This tool does not guarantee metrics.
+        </div>
+
+        <div class="info">
+          <h3>Why autoplay may not work?</h3>
+          Some browsers block autoplay with sound. Muted autoplay usually works better depending on browser settings.
+        </div>
+
+        <div class="info">
+          <h3>What is the best player count?</h3>
+          For smooth performance, use fewer players on mobile and avoid opening too many players at once.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <b>Free Creator Tools</b><br />
+    Free creator tools for YouTube, Instagram, blogs, and digital creators.<br />
+    © 2026 Free Creator Tools. All Rights Reserved.
+  </footer>
+
+  <script>
+    const playersEl = document.getElementById("players");
+    const messageEl = document.getElementById("message");
+    const statPlayers = document.getElementById("statPlayers");
+
+    function showMessage(text, type = "error") {
+      messageEl.textContent = text;
+      messageEl.style.color = type === "success" ? "#9cffd3" : "#ffd6d6";
+    }
+
+    function extractYouTubeId(url) {
+      if (!url) return null;
+
+      try {
+        const parsed = new URL(url.trim());
+        const host = parsed.hostname.replace("www.", "");
+
+        if (host.includes("youtube.com") && parsed.searchParams.get("v")) {
+          return parsed.searchParams.get("v");
+        }
+
+        if (host === "youtu.be") {
+          return parsed.pathname.split("/").filter(Boolean)[0];
+        }
+
+        if (host.includes("youtube.com") && parsed.pathname.includes("/shorts/")) {
+          return parsed.pathname.split("/shorts/")[1].split("/")[0].split("?")[0];
+        }
+
+        if (host.includes("youtube.com") && parsed.pathname.includes("/live/")) {
+          return parsed.pathname.split("/live/")[1].split("/")[0].split("?")[0];
+        }
+
+        if (host.includes("youtube.com") && parsed.pathname.includes("/embed/")) {
+          return parsed.pathname.split("/embed/")[1].split("/")[0].split("?")[0];
+        }
+
+        return null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function generatePlayers() {
+      const url = document.getElementById("youtubeUrl").value.trim();
+      let count = parseInt(document.getElementById("count").value, 10);
+      const mute = document.getElementById("mute").value;
+      const autoplay = document.getElementById("autoplay").value;
+      const quality = document.getElementById("quality").value;
+
+      const videoId = extractYouTubeId(url);
+
+      if (!videoId) {
+        showMessage("Please enter a valid YouTube URL.");
+        return;
+      }
+
+      if (!count || count < 1) count = 1;
+      if (count > 20) count = 20;
+
+      playersEl.innerHTML = "";
+
+      if (quality === "large") {
+        playersEl.style.gridTemplateColumns = "repeat(auto-fit, minmax(420px, 1fr))";
+      } else if (quality === "compact") {
+        playersEl.style.gridTemplateColumns = "repeat(auto-fit, minmax(220px, 1fr))";
+      } else {
+        playersEl.style.gridTemplateColumns = "repeat(auto-fit, minmax(280px, 1fr))";
+      }
+
+      for (let i = 1; i <= count; i++) {
+        const card = document.createElement("div");
+        card.className = "player-card";
+
+        const src =
+          "https://www.youtube.com/embed/" +
+          encodeURIComponent(videoId) +
+          "?rel=0" +
+          "&modestbranding=1" +
+          "&playsinline=1" +
+          "&enablejsapi=1" +
+          "&autoplay=" + autoplay +
+          "&mute=" + mute;
+
+        card.innerHTML = `
+          <div class="player-head">
+            <b>Player ${i}</b>
+            <span>${mute === "1" ? "Muted" : "Sound On"} • ${autoplay === "1" ? "Autoplay" : "Manual"}</span>
+          </div>
+
+          <div class="iframe-wrap">
+            <iframe
+              src="${src}"
+              title="YouTube player ${i}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+        `;
+
+        playersEl.appendChild(card);
+      }
+
+      statPlayers.textContent = count;
+      showMessage("Players generated successfully.", "success");
+
+      document.getElementById("generated").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    function clearPlayers() {
+      playersEl.innerHTML = "";
+      statPlayers.textContent = "0";
+      showMessage("Players cleared.", "success");
+    }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free Creator Tools YouTube Multi Viewer Tool",
+    "description": "Free YouTube Multi Viewer Tool to preview YouTube videos, Shorts, and live streams in multiple responsive embedded players.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</body>
+</html>
